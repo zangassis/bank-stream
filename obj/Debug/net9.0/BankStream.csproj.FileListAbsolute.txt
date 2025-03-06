@@ -1,0 +1,6 @@
+/Users/assiszang/Desktop/Programming/Telerik blog/Event Sourcing/NEW VERSION/BankStream/obj/Debug/net9.0/BankStream.csproj.AssemblyReference.cache
+/Users/assiszang/Desktop/Programming/Telerik blog/Event Sourcing/NEW VERSION/BankStream/obj/Debug/net9.0/BankStream.GeneratedMSBuildEditorConfig.editorconfig
+/Users/assiszang/Desktop/Programming/Telerik blog/Event Sourcing/NEW VERSION/BankStream/obj/Debug/net9.0/BankStream.AssemblyInfoInputs.cache
+/Users/assiszang/Desktop/Programming/Telerik blog/Event Sourcing/NEW VERSION/BankStream/obj/Debug/net9.0/BankStream.AssemblyInfo.cs
+/Users/assiszang/Desktop/Programming/Telerik blog/Event Sourcing/NEW VERSION/BankStream/obj/Debug/net9.0/BankStream.csproj.CoreCompileInputs.cache
+/Users/assiszang/Desktop/Programming/Telerik blog/Event Sourcing/NEW VERSION/BankStream/obj/Debug/net9.0/BankStream.MvcApplicationPartsAssemblyInfo.cache
