@@ -22,6 +22,7 @@ builder
                     "event-queue",
                     e =>
                     {
+                        e.SetQueueArgument("x-message-ttl", 500000);
                         e.ConfigureConsumer<DepositConsumer>(context);
                         e.ConfigureConsumer<WithdrawalConsumer>(context);
                     }

@@ -21,8 +21,6 @@ public class AccountController : ControllerBase
     [HttpPost("deposit")]
     public async Task<IActionResult> Deposit([FromBody] DepositEvent deposit)
     {
-        _dbContext.Deposits.Add(deposit);
-        await _dbContext.SaveChangesAsync();
         await _bus.Publish(deposit);
         return Accepted();
     }
@@ -30,8 +28,6 @@ public class AccountController : ControllerBase
     [HttpPost("withdrawal")]
     public async Task<IActionResult> Withdraw([FromBody] WithdrawalEvent withdrawal)
     {
-        _dbContext.Withdrawals.Add(withdrawal);
-        await _dbContext.SaveChangesAsync();
         await _bus.Publish(withdrawal);
         return Accepted();
     }
