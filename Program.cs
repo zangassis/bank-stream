@@ -1,4 +1,10 @@
+using BankStream.Consumers;
+using BankStream.Data;
+using MassTransit;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
 builder
     .Services
     .AddDbContext<EventDbContext>(options => options.UseSqlite("Data Source=events.db"));
@@ -23,7 +29,11 @@ builder
             }
         );
     });
+
 builder.Services.AddControllers();
+
 var app = builder.Build();
+
 app.MapControllers();
+
 app.Run();
