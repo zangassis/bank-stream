@@ -1,5 +1,6 @@
 using BankStream.Data;
 using BankStream.Events;
+using BankStream.Models;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,18 @@ public class AccountController : ControllerBase
     [HttpPost("deposit")]
     public async Task<IActionResult> Deposit([FromBody] DepositEvent deposit)
     {
+        await _dbContext.TransactionStatus.AddAsync(new TransactionStatus(
+            Guid.NewGuid(),
+            deposit.AccountId,
+            StatusEnum.Pending,
+            deposit.Amount,
+            false,
+            string.Empty,
+            TransactionTypeEnum.Deposit,
+            DateTime.Now)
+        );
+        await _dbContext.SaveChangesAsync();
+
         await _bus.Publish(deposit);
         return Accepted();
     }
@@ -28,6 +41,18 @@ public class AccountController : ControllerBase
     [HttpPost("withdrawal")]
     public async Task<IActionResult> Withdraw([FromBody] WithdrawalEvent withdrawal)
     {
+        await _dbContext.TransactionStatus.AddAsync(new TransactionStatus(
+             Guid.NewGuid(),
+             withdrawal.AccountId,
+             StatusEnum.Pending,
+             withdrawal.Amount,
+             false,
+             string.Empty,
+             TransactionTypeEnum.Withdrawal,
+             DateTime.Now)
+         );
+        await _dbContext.SaveChangesAsync();
+
         await _bus.Publish(withdrawal);
         return Accepted();
     }
