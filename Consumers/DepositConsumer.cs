@@ -15,19 +15,37 @@ public class DepositConsumer : IConsumer<DepositEvent>
     {
         var deposit = context.Message;
 
-        await _dbContext.TransactionStatus.AddAsync(new TransactionStatus(
-            Guid.NewGuid(),
-            deposit.AccountId, 
-            StatusEnum.Completed,
-            deposit.Amount,
-            true,
-            string.Empty,
-            TransactionTypeEnum.Deposit,
-            DateTime.Now)
-        );
+        try
+        {
+            await _dbContext.TransactionStatus.AddAsync(new TransactionStatus(
+                Guid.NewGuid(),
+                deposit.AccountId,
+                StatusEnum.Completed,
+                deposit.Amount,
+                true,
+                string.Empty,
+                TransactionTypeEnum.Deposit,
+                DateTime.Now)
+            );
 
-        _dbContext.Deposits.Add(deposit);
+            await _dbContext.Deposits.AddAsync(deposit);
 
-        await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            await _dbContext.TransactionStatus.AddAsync(new TransactionStatus(
+                Guid.NewGuid(),
+                deposit.AccountId,
+                StatusEnum.Failed,
+                deposit.Amount,
+                true,
+                ex.Message,
+                TransactionTypeEnum.Deposit,
+                DateTime.Now)
+            );
+            await _dbContext.SaveChangesAsync();
+            throw;
+        }
     }
 }
