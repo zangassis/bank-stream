@@ -2,7 +2,7 @@
 
 **This project contains a sample ASP.NET Core app. This app is an example of the article I produced for the Telerik Blog (telerik.com/blogs)**
 
-BankStream is a lightweight banking system that leverages **Event Sourcing** with **RabbitMQ**, **MassTransit**, and **SQLite**. This project is built using **ASP.NET Core** to provide a reliable and scalable event-driven architecture.
+BankStream is a lightweight banking system that leverages **Event Sourcing** with **RabbitMQ**, **MassTransit**, and **SQLite**. This project is built using **ASP.NET Core** to provide a reliable and scalable event-sourcing architecture.
 
 ## 📌 Features
 
